@@ -1,0 +1,14 @@
+Repository for dso.belastro.net project for astronomy amateurs. Main aims of the project are 1) to provide handy instrument for storing 
+observation notes and 2) to support experience exchage among amateur observers.
+
+Simple front-end is based on html5 and css3 only. Layout is built using flexbox approach. Backend is based on PHP and MySQL via mysqli.
+
+Features:
+1)Main page showing articles, wich are stored in DB, with pagination
+2)Authorisation/registration
+3)Feedback messages, using PHPMailer
+4)Add article, comment article and edit article functions
+5)Full-text search
+6)Server-side form validation
+7)PHP routing
+8)Responsive design for desktop/mobile devices
