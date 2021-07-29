@@ -2,7 +2,7 @@
 $title='главная';
 function page(){
 	echo '<h1>Главная</h1>';
-	include_once (ROOT.'/inc/db_connect.php');
+	include (ROOT.'/inc/db_connect.php');
 	
 	$count_articles=$mysqli->query("SELECT COUNT(*)FROM `articles`");
 	$count=$count_articles->fetch_assoc();

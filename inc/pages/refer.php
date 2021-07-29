@@ -3,7 +3,7 @@ $title='ссылки';//для отображения в заголовке ст
 //функция формирует основную часть страницы, которая отображается в блоке main шаблона страницы
 function page(){
 	echo '<h1>Ссылки</h1>';
-	include_once (ROOT.'/inc/db_connect.php');//подключает к бд
+	include (ROOT.'/inc/db_connect.php');//подключает к бд
 
 	$count_refer=$mysqli->query("SELECT COUNT(*)FROM `refer`");//возвращает объект
 	$count=$count_refer->fetch_assoc();//преобразует его в ассоциативный массив

@@ -65,6 +65,9 @@
 			?>
 		</section>
 	</main>
-	<footer>&copy; BelAstroNet Team <?=date('Y')?></footer>
+	<footer>
+		<p>&copy; BelAstroNet Team <?=date('Y')?></p>
+		<p> К проекту присоединилось <?=$user_count['COUNT(*)']?> ЛА</p>
+	</footer>
 </body>
 </html>
