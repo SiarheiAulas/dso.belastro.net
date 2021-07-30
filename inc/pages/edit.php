@@ -1,6 +1,6 @@
 <?php
 $title='Редактировать';
-require_once './inc/db_connect.php';//коннект к БД
+require './inc/db_connect.php';//коннект к БД
 function page(){
 	global $mysqli;
 	$request=$mysqli->prepare("SELECT * FROM `articles` WHERE id=?");

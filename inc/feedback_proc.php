@@ -13,7 +13,6 @@ $username=(isset($_SESSION['username']))?$_SESSION['username']:htmlspecialchars(
 $email=htmlspecialchars(trim($_POST["email"]));
 $subject=htmlspecialchars(trim($_POST["subject"]));
 $message=htmlspecialchars(trim($_POST["message"]));
-define('MYEMAIL','avlassergey@list.ru');//для отправки писем и сайта
 
 $_SESSION['feedback']=array('name'=>$username, 'email'=>$email, 'subject'=>$subject, 'message'=>$message);
 //чтобы текст сохранялся в форме при обновлении страницы
@@ -31,12 +30,7 @@ if(empty($message)){//если сообщение пустое
 } else{ //если все ок
 	$_SESSION["err_message"]=''; //сообщение об ошибке пустое
 }
-	/*$subject="=?utf-8?b?".base64_encode($subject)."?=";//кодировка темы сообщения
-	$headers="From: $email\r\nReply to: $email\r\nContent type:text/plain; charset=utf-8\r\n";
-	mail(MYEMAIL,$subject,$message,$headers);// письмо с сайта мне
-	redirect();//редирект на ту же страницу с формой отправки сообщения		*/
-	
-	
+		
 	//Настройки отправки почты через PHPMailer
 	$mail = new PHPMailer\PHPMailer\PHPMailer();
 	try {

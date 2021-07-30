@@ -1,6 +1,6 @@
 <?php
 $title='Результаты поиска';//для заголовка
-require_once (ROOT.'/inc/db_connect.php');//для подключения к БД (используется mysqli)
+require (ROOT.'/inc/db_connect.php');//для подключения к БД (используется mysqli)
 function page(){
 	global $mysqli;
 	if($_SERVER['REQUEST_METHOD']=='POST'){
