@@ -1,6 +1,6 @@
 <?php
 $title='личный кабинет';//для отображения в заголовке
-require_once (ROOT.'/inc/db_connect.php');// соединение с БД
+require (ROOT.'/inc/db_connect.php');// соединение с БД
 function page(){
 	global $mysqli;
 	echo "<h1>Личный кабинет: $_SESSION[username]</h1>";
