@@ -42,8 +42,8 @@ if(empty($message)){//если сообщение пустое
 	
 		// Настройки вашей почты
 		$mail->Host='smtp.mail.ru'; // SMTP сервера вашей почты
-		$mail->Username='avlassergey@list.ru'; // Логин на почте
-		$mail->Password='24107ac'; // Пароль на почте
+		$mail->Username='dso.belastro@mail.ru'; // Логин на почте
+		$mail->Password='24107Qwerty'; // Пароль на почте
 		$mail->SMTPSecure='ssl';
 		$mail->Port= 465;
 		$mail->setFrom("$email","$username"); // Адрес самой почты и имя отправителя
