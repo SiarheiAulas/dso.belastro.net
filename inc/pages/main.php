@@ -34,8 +34,13 @@ function page(){
 	$results=$result->get_result();
 	while($row=$results->fetch_assoc()){
 		// из объекта в массив
-		echo "<article><div class='article_subject'>$row[subject]</div><div class='author'>$row[username]</div>
-			<div class='article_content'>$row[content]</div><div class='publication_date'>$row[publication_date]</div></article>";
+		echo "<article>
+                <div class='article_subject'><a href='./index.php?act=show&amp;article_id=$row[id]&amp;user_id=$row[user_id]'>$row[subject]</a></div>
+                <!--<div class='publication_date'>Дата выезда: ".date('d-m-Y', strtotime($row[observation_date]))."</div>-->
+                <div class='publication_date'>Добавлено: ".date('d-m-Y', strtotime($row[publication_date]))."</div>
+                <div class='author'>$row[username]</div>
+                <div class='article_content'>$row[content]</div>
+            </article>";
 	
 		if(isset($_SESSION['username'])){
 			echo "<div class='add_comment'><a href='./index.php?act=comment&amp;article_id=$row[id]&amp;user_id=$row[user_id]'>Комментировать</a></div>";
@@ -49,14 +54,19 @@ function page(){
 		$comments->execute();
 		$result=$comments->get_result();
 		while ($comment=$result->fetch_assoc()){
-			echo "<div class='comment'><div class='comment_content'>$comment[comment]</div><div class='publication_date'>$comment[publication_date]</div></div>";
+			echo "<div class='comment'>
+                    <div class='comment_content'>$comment[comment]</div>
+                    <div class='publication_date'>$comment[publication_date]</div>
+                </div>";
 		}
 		$result->close();
 	}
 	$next=$page+1;
 	$previous=$page-1;
-	echo "<div class='page_navigation'><span class='previous'><a href='index.php?act=main&amp;page=$previous'><<<Предыдущая</a></span>
-		<span class='next'><a href='index.php?act=main&amp;page=$next'>Следующая>>></a></span></div>";
+	echo "<div class='page_navigation'>
+            <span class='previous'><a href='index.php?act=main&amp;page=$previous'><<<Предыдущая</a></span>
+            <span class='next'><a href='index.php?act=main&amp;page=$next'>Следующая>>></a></span>
+        </div>";
 	$results->close();
 	$mysqli->close();
 }//выбирает все статьи и выводит на экран

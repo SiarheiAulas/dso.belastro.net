@@ -5,6 +5,11 @@ require_once 'lib.php';//подключение библиотеки функц�
 //получение и обработка пользовательсткого ввода
 $subject=stripslashes(htmlspecialchars(trim($_POST['subject']))); //удалить слэши
 $content=strip_tags(trim($_POST['content']),'<b><i><a><img><br><p>');// удалить тэги кроме разрешенных
+if(empty($_POST['observation_date'])){
+    $observation_date=date('d-m-Y');
+}else{
+    $observation_date=strip_tags(stripslashes(htmlspecialchars(trim($_POST['observation_date']))));
+    }
 $article_id=$_POST['article_id'];
 $_SESSION['edit']=array('subject'=>$subject,'content'=>$content);
 //валидация пользовательсткого ввода (проверка на пустую строку). Если пусто, то записывает в сессию сообщение об ошибке
@@ -25,6 +30,7 @@ if(empty($subject)){
 	$id=$user->fetch_assoc();
 	$userid->close();//очищаем объект*/
 	$edit=$mysqli->prepare("UPDATE `articles` SET `subject`=?,`content`=? WHERE `id`=?");
+    //$edit=$mysqli->prepare("UPDATE `articles` SET `subject`=?,`content`=?, `observation_date`=? WHERE `id`=?");
 	//шаблон запроса на добавление статьи в БД
 	$img_dir=$_SERVER['DOCUMENT_ROOT'].'/img/';//определяет директорию для картинок
 	for ($i=0; $i<5; $i++){//для каждого выбранного файла
@@ -48,6 +54,7 @@ if(empty($subject)){
 		}
 	}
 	$edit->bind_param('ssi',$subject,$content,$article_id);
+    //$edit->bind_param('sssi',$subject,$content,$observation_date,$article_id);
 	$edit->execute();//добавляет запись в БД
 	$edit->close();//очищает объект
 	$_SESSION['edit_success']='Запись обновлена'; //в сессию пишется сообщение об успехе

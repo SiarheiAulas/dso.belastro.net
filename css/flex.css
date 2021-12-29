@@ -89,6 +89,12 @@ a:hover {
     border-radius: 15px;
 }
 
+.article_subject>a, .article_subject>a:hover, .article_subject>a:visited, .article_subject>a:active{
+    color: black;
+    background-color: transparent;
+    border: 0;
+}
+
 aside {
     position:-webkit-sticky;
     position:sticky;
@@ -104,8 +110,8 @@ aside {
 
 .kostyl_bg {
     background-color: var(--bg_grey);
-    height: 320px;
-    display: flex;
+    height:320px;
+    display: block;
     flex-direction: column;
     border-radius: 5px;
 }
@@ -379,6 +385,10 @@ select {
     float:right;
 }
 
+.contain-1{
+    margin:20px 0;
+}
+
 @media only screen and (max-width:768px) {
     header {
         flex-direction: column;
@@ -450,6 +460,29 @@ select {
 
     .searchbtn:last-child {
         margin-left: 5px;
+    }
+    
+    .navLink{
+        display: block;
+        float:left;
+    }
+    
+    .container{
+        width: 90%;
+        margin: auto;
+    }
+    
+    .contain-1{
+        float: left;
+        max-width: 30%;
+        margin: auto;
+        word-wrap:normal;
+        word-break: break-all;
+    }
+    
+    .kostyl_bg{
+        height:auto;
+        padding: 10px;
     }
 
 }

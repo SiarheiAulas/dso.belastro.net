@@ -5,8 +5,14 @@ include 'lib.php';//подключение библиотеки функций
 //получение и обработка пользовательсткого ввода
 $subject=stripslashes(htmlspecialchars(trim($_POST['subject']))); //удалить слэши
 $content=strip_tags(trim($_POST['content']),'<b><i><a><img><br><p>');// удалить тэги кроме разрешенных
+
+if(empty($_POST['observation_date'])){
+    $observation_date=date('d-m-Y');
+}else{
+    $observation_date=strip_tags(stripslashes(htmlspecialchars(trim($_POST['observation_date']))));
+    }
 $username=$_POST['username'];
-$_SESSION['add']=array('subject'=>$subject, 'content'=>$content);
+$_SESSION['add']=array('subject'=>$subject, 'content'=>$content, 'observation_date'=>$observation_date);
 //валидация пользовательсткого ввода (проверка на пустую строку). Если пусто, то записывает в сессию сообщение об ошибке
 if(empty($subject)){
 	$_SESSION['error_subject']='Введите тему сообщения';
@@ -24,8 +30,11 @@ if(empty($subject)){
 	$user=$userid->get_result(); // получаем из БД ид пользователя по имени польователя
 	$id=$user->fetch_assoc();
 	$userid->close();//очищаем объект
-	$add=$mysqli->prepare("INSERT INTO `articles` (`user_id`,`subject`,`content`) VALUES (?,?,?)");
-	//шаблон запроса на добавление статьи в БД
+   
+    $add=$mysqli->prepare("INSERT INTO `articles` (`user_id`,`subject`,`content`) VALUES (?,?,?)");
+	//$add=$mysqli->prepare("INSERT INTO `articles` (`user_id`,`subject`,`content`,`observation_date') VALUES (?,?,?,?)");
+	
+    //шаблон запроса на добавление статьи в БД
 	$img_dir=$_SERVER['DOCUMENT_ROOT'].'/img/';//определяет директорию для картинок
 	for ($i=0; $i<5; $i++){//для каждого выбранного файла
 		if ($_FILES["upload"]["name"]["$i"]){ //если выбран файл в поле с номером i
@@ -48,7 +57,9 @@ if(empty($subject)){
 			}
 		}
 	}
-	$add->bind_param('sss',$id['id'],$subject,$content);
+
+    $add->bind_param('sss',$id['id'],$subject,$content);
+	//$add->bind_param('ssss',$id['id'],$subject,$content,$observation_date);
 	$add->execute();//добавляет запись в БД
 	$add->close();//очищает объект
 	$_SESSION['add_success']='Новая запись добавлена в журнал'; //в сессию пишется сообщение об успехе
