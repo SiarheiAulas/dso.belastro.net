@@ -18,9 +18,11 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kurale&display=swap">
-<!--WYSIWYG-->
-            <script src="https://cdn.tiny.cloud/1/esssxnna3kappnbe3yac5ejvd7ffu2jswun5lfq7mupla1ba/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-            s
+	<?php
+		if (isset($_SESSION['username']))
+			echo '<!--WYSIWYG-->
+        		      <script src="https://cdn.tiny.cloud/1/esssxnna3kappnbe3yac5ejvd7ffu2jswun5lfq7mupla1ba/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>';
+	?>
 </head>
 <body>
 	<header>
